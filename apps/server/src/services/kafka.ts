@@ -8,11 +8,11 @@ const kafka = new Kafka({
   ssl: {
     ca: [fs.readFileSync(path.resolve('./ca.pem'), 'utf-8')]
   },
-    sasl: {
-        mechanism: 'plain',
-        username: process.env.KAFKA_USERNAME || '',
-        password: process.env.KAFKA_PASSWORD || '',
-    }
+  sasl: {
+    mechanism: process.env.KAFKA_MECHANISM as any,
+    username: process.env.KAFKA_USERNAME || '',
+    password: process.env.KAFKA_PASSWORD || '',
+} as any
 })
 
 let producer: null | Producer = null;
